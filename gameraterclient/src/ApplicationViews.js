@@ -1,15 +1,13 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { GameList } from "./game/GameList.js"
-import { GameProvider } from "./game/GameProvider.js"
-import { EventProvider } from "./event/EventProvider.js"
-import { EventList } from "./event/EventList.js"
-import { GameForm } from "./game/GameForm.js"
-import { EventForm } from "./event/EventForm.js"
-import { ProfileProvider } from "./auth/ProfileProvider.js"
-import { Profile } from "./auth/ProfileView.js"
-
-//copied directly. Fix tomorrow.
+import { GameList } from "./components/game/GameList.js"
+import { GameProvider } from "./components/game/GameProvider.js"
+// import { EventProvider } from "./event/EventProvider.js"
+// import { EventList } from "./event/EventList.js"
+import { GameForm } from "./components/game/GameForm.js"
+// import { EventForm } from "./event/EventForm.js"
+import { ProfileProvider } from "./components/auth/ProfileProvider.js"
+// import { Profile } from "./auth/ProfileView.js"
 
 export const ApplicationViews = () => {
     return <>
@@ -29,7 +27,7 @@ export const ApplicationViews = () => {
                 <Route exact path="/games/:gameId(\d+)/edit">
                     <GameForm />
                 </Route>
-
+{/* 
                 <EventProvider>
 
                     <Route exact path="/events">
@@ -45,7 +43,7 @@ export const ApplicationViews = () => {
                             <Profile />
                         </Route>
                     </ProfileProvider>
-                </EventProvider>
+                </EventProvider> */}
 
             </GameProvider>
 
