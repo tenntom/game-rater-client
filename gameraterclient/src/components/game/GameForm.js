@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
+import { CategoryContext } from "../categories/CategoryProvider.js"
 import { GameContext } from "./GameProvider.js"
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -6,7 +7,8 @@ import { useHistory, useParams } from 'react-router-dom'
 export const GameForm = () => {
     const history = useHistory()
     const { createGame, editGame, getGameById } = useContext(GameContext)
-
+    const { getCategories, categories } = useContext(CategoryContext)
+    
     /*
         Since the input fields are bound to the values of
         the properties of this state variable, you need to
@@ -19,7 +21,7 @@ export const GameForm = () => {
         numberOfPlayers: 0,
         duration: 0,
         age_rec: 0,
-        categories: []
+        category: 0
     })
 
     const {gameId} = useParams()
@@ -28,9 +30,9 @@ export const GameForm = () => {
         Get game types on initialization so that the <select>
         element presents game type choices to the user.
     */
-    // useEffect(() => {
-    //     getGameTypes()
-    // }, [])
+    useEffect(() => {
+        getCategories()
+    }, [])
 
     useEffect(() => {
         getGameById(gameId)
@@ -76,6 +78,19 @@ export const GameForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
+                    <label htmlFor="category">Cateogries: </label>
+                    <select name="category" name="category" className="form-control" value={currentGame.categories} onChange={handleControlledInputChange}>
+                        <option value="0">Select a type</option>
+                        {categories.map(c => (
+                            <option key={c.id} value={c.id}>
+                                {c.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
                     <label htmlFor="description">Description: </label>
                     <input type="text" name="description" required autoFocus className="form-control"
                         value={currentGame.description}
@@ -103,7 +118,7 @@ export const GameForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="duration">Estimated Time: </label>
+                    <label htmlFor="duration">Estimated Time (in mins): </label>
                     <input type="text" name="duration" required autoFocus className="form-control"
                         value={currentGame.duration}
                         onChange={handleControlledInputChange}
@@ -120,19 +135,7 @@ export const GameForm = () => {
                 </div>
             </fieldset>
 
-            {/* <fieldset>
-                <div className="form-group">
-                    <label htmlFor="categories">Cateogries: </label>
-                    <select name="gameType" name="gameTypeId" className="form-control" value={currentGame.gameTypeId} onChange={handleCategoryInputChange}>
-                        <option value="0">Select a type</option>
-                        {categories.map(gt => (
-                            <option key={gt.id} value={gt.id}>
-                                {gt.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </fieldset> */}
+ 
             
 
             {

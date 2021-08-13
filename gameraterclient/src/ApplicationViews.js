@@ -7,6 +7,7 @@ import { GameProvider } from "./components/game/GameProvider.js"
 import { GameForm } from "./components/game/GameForm.js"
 // import { EventForm } from "./event/EventForm.js"
 import { ProfileProvider } from "./components/auth/ProfileProvider.js"
+import { CategoryProvider } from "./components/categories/CategoryProvider.js"
 // import { Profile } from "./auth/ProfileView.js"
 
 export const ApplicationViews = () => {
@@ -16,6 +17,7 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             <GameProvider>
+                <CategoryProvider>
                 <Route exact path="/games">
                     <GameList />
                 </Route>
@@ -27,6 +29,7 @@ export const ApplicationViews = () => {
                 <Route exact path="/games/:gameId(\d+)/edit">
                     <GameForm />
                 </Route>
+                </CategoryProvider>
 {/* 
                 <EventProvider>
 

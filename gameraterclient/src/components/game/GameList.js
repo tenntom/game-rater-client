@@ -27,9 +27,21 @@ export const GameList = (props) => {
                             Edit                        
                         </button>
                         </div>
-                        <div className="game__name">{game.title} by {game.maker}</div>
+                        <div className="game__name">{game.title} by {game.designer}</div>
+                        <div className="categories">
+                            Categories:
+                        {
+                            game.categories.map(c => {
+                                return <div key={`category--${c.id}`} className="category">
+                                    {c.label}
+                                </div>
+                            })
+                        }
+                        </div>
+                        {/* <div className="game__category">{game.category.label}</div> */}
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__description">Game Description: {game.description}</div>
+                        <div className="game__age_rec">Recommended Age: {game.age_rec}</div>
                     </section>
                 })
             }
